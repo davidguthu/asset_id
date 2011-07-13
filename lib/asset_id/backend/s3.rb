@@ -4,7 +4,7 @@ module AssetID
   class S3
   
     def self.s3_config
-      @@config ||= YAML.load_file(File.join(Rails.root, "config/asset_id.yml"))[Rails.env] rescue nil || {}
+      @@config ||= YAML::load(ERB.new(File.join(Rails.root, "config/asset_id.yml")).result)[Rails.env] rescue nil || {}
     end
   
     def self.connect_to_s3
